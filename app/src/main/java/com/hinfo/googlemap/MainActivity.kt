@@ -7,12 +7,14 @@ import android.location.LocationListener
 import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
     val locationPermissionCode = 2
+    private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, object : LocationListener{
             override fun onLocationChanged(location: Location) {
-
+                var latLong = "Latitude: " + location.latitude + " , Longitude: " + location.longitude
+                Log.e(TAG, "onLocationChanged: ============ $latLong" )
             }
 
         })
